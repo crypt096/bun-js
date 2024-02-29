@@ -1,9 +1,6 @@
-import axios from 'axios';
+import fetchUser from "./githubAPI";
 
-async function fetchUser(user) {
-  const res = await axios.get('https://api.github.com/users/' + user);
-
-  return res.data;
-}
-
-export default fetchUser;
+(async () => {
+  const userData = await fetchUser('crypt096');
+  document.querySelector('h1').innerHTML = JSON.stringify(userData)
+})
