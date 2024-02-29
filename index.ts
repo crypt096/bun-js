@@ -1,7 +1,16 @@
 const server = Bun.serve({
-  port: 3300,
+  port: process.env.PORT || 8000,
   fetch(req) {
-    return new Response('Hello World!')
+    const url = new URL(req.url);
+    if (url.pathname === '/') {
+      return new Response('HomePage');
+    }
+
+    if (url.pathname === '/blog') {
+      return new Response('Blog');
+    }
+
+    return new Response('Not Found', { status: 404 });
   }
 })
 
